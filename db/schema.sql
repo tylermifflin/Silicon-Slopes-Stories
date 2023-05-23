@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS stories_db;
+
+CREATE DATABASE stories_db;
