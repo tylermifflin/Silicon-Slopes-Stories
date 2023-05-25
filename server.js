@@ -23,8 +23,8 @@ const hbs = exphbs.create({ helpers });
 const sess = {
     secret: 'Secret',
     cookie: {
-        // Session will automatically expire in 10 minutes
-        maxAge: 600000,
+        // Session will automatically expire in 1 hour
+        maxAge: 3600000,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
