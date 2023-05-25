@@ -12,8 +12,27 @@ const sequelize = require('./config/connection');
 // import sequelize store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// calling express
+// calling express and PORT
 const app = express();
-
-// calling port
 const PORT = process.env.PORT || 3001;
+
+// using custom helpers
+const hbs = exphbs.create({ helpers });
+
+// creating session
+const sess = {
+    secret: 'Secret',
+    cookie: {
+        // Session will automatically expire in 10 minutes
+        maxAge: 600000,
+        httpOnly: true,
+        secure: false,
+        sameSite: 'strict',
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize,
+    }),
+};
+
