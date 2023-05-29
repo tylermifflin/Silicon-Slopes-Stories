@@ -29,5 +29,12 @@ router.put('/:id', withAuth, async (req, res) => {
     }
 });
 
-// DELETE /api/blogposts/1
+// DELETE /api/blogposts/1 -- only user who posted the blogpost can delete it
 router.delete('/:id', withAuth, async (req, res) => {
+    try {
+        const blogpostData = await Blogpost.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
