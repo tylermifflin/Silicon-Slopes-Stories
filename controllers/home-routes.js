@@ -45,6 +45,12 @@ router.get('/blogPost/:id', async (req, res) => {
     }
 });
 
-// use withAuth middleware to prevent access to route
+// use withAuth middleware to make sure only logged in users can access the dashboard
 router.get('/dashboard', withAuth, async (req, res) => {
-    try {
+    try { 
+        // Find the logged in user based on the session ID
+        const userData = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ['password'] },
+            include: [{ model: BlogPost }],
+        });
+
