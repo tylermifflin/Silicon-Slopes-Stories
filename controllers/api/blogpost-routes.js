@@ -38,3 +38,9 @@ router.delete('/:id', withAuth, async (req, res) => {
                 user_id: req.session.user_id,
             },
         });
+        if (!blogpostData) {
+            res.status(404).json({ message: 'Blogpost does not exist with this id' });
+            return;
+        }
+        res.status(200).json(blogpostData);
+        
