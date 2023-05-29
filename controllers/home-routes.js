@@ -35,3 +35,12 @@ router.get('/blogPost/:id', async (req, res) => {
                 },
             ],
         });
+        const blogPost = blogPostData.get({ plain: true });
+        res.render('blogPost', {
+            ...blogPost,
+            logged_in: req.session.logged_in,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
