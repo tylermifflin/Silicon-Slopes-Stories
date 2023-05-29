@@ -27,3 +27,4 @@ router.post('/login', async (req, res) => {
                 .json({ message: 'Incorrect email' });
             return;
         }
+        const validPassword = await userData.checkPassword(req.body.password);
