@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET one blog post
+// GET one blog post for dashboard and render blogPost page
 router.get('/blogPost/:id', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findByPk(req.params.id, {
@@ -44,3 +44,7 @@ router.get('/blogPost/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// use withAuth middleware to prevent access to route
+router.get('/dashboard', withAuth, async (req, res) => {
+    try {
