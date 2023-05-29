@@ -1,4 +1,6 @@
-const { Blogpost } = require('../models');
+// using a model to create data and export it to seed.js
+
+const { BlogPost } = require('../models');
 
 
 const blogpostData = [
@@ -20,6 +22,6 @@ const blogpostData = [
     },
 ];
 
-const seedBlogpost = () => Blogpost.bulkCreate(blogpostData);
+const seedBlogpost = () => BlogPost.bulkCreate(blogpostData);
 
 module.exports = seedBlogpost;
