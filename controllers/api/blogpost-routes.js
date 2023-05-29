@@ -18,3 +18,9 @@ router.post ('/', withAuth, async (req, res) => {
 // PUT /api/blogposts/1 -- update blogpost, or add a comment to an existing blogpost
 router.put('/:id', withAuth, async (req, res) => {
     try { 
+        const blogpostData = await Blogpost.update({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+        res.status(200).json(blogpostData);
+    }
