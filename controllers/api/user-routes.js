@@ -34,3 +34,13 @@ router.post('/login', async (req, res) => {
                 .json({ message: 'Incorrect password' });
             return;
         }
+        // Once the user successfully logs in, set up the sessions variable 'loggedIn'
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.logged_in = true;
+            res.json({ user: userData, message: 'Logged in!' });
+        });
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
