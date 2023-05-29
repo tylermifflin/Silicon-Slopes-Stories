@@ -1,12 +1,12 @@
 // Initialize express router, using Blogpost 
 const router = require('express').Router();
-const { Blogpost } = require('../../models');
+const { BlogPost } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // POST /api/blogposts
 router.post ('/', withAuth, async (req, res) => {
     try {
-        const newBlogpost = await Blogpost.create({
+        const newBlogpost = await BlogPost.create({
             ...req.body,
             user_id: req.session.user_id,
         });
@@ -19,7 +19,7 @@ router.post ('/', withAuth, async (req, res) => {
 // PUT /api/blogposts/1 -- update blogpost, or add a comment to an existing blogpost
 router.put('/:id', withAuth, async (req, res) => {
     try { 
-        const blogpostData = await Blogpost.update({
+        const blogpostData = await BlogPost.update({
             ...req.body,
             user_id: req.session.user_id,
         });
@@ -33,7 +33,7 @@ router.put('/:id', withAuth, async (req, res) => {
 // DELETE /api/blogposts/1 -- only user who posted the blogpost can delete it
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const blogpostData = await Blogpost.destroy({
+        const blogpostData = await BlogPost.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id,
