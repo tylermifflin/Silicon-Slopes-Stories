@@ -1,9 +1,16 @@
-// setting up seed data to import into the database from blogpostData.json and userData.json
+// setting up seed data to import into the database from blogpostData.js and userData.js
 const sequelize = require('../config/connection');
-const { User, BlogPost } = require('../models');
+const seedBlogpost = require('./blogpostData');
+const seedUser = require('./userData');
 
-const userData = require('./userData');
-const blogpostData = require('./blogpostData');
-
-const seedDatabase = async () => {
+const seedAll = async () => {
     await sequelize.sync({ force: true });
+    console.log('--------------');
+    await seedUser();
+    console.log('--------------');
+    await seedBlogpost();
+    console.log('--------------');
+    process.exit(0);
+};
+
+seedAll();
