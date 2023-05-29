@@ -14,3 +14,7 @@ router.post ('/', withAuth, async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+// PUT /api/blogposts/1 -- update blogpost, or add a comment to an existing blogpost
+router.put('/:id', withAuth, async (req, res) => {
+    try { 
