@@ -28,3 +28,6 @@ router.put('/:id', withAuth, async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+// DELETE /api/blogposts/1
+router.delete('/:id', withAuth, async (req, res) => {
