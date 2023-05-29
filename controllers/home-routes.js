@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
                 },
             ],
         });
-        // Serialize data so the template can read it
+        // Serialize data so the template can read it and render it to homepage
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
         res.render('homepage', {
             blogPosts,
@@ -23,3 +23,8 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// GET one blog post
+router.get('/blogPost/:id', async (req, res) => {
+    try {
+        
