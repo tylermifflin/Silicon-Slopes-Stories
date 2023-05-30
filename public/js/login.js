@@ -9,3 +9,8 @@ const loginTemplate = async (event) => {
     // if email and password are entered
     if (email && password) {
         // send POST request to login route
+        const user = await fetch('/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
