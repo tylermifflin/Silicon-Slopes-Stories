@@ -48,3 +48,12 @@ const signupTemplate = async (event) => {
         }
     }
 };
+
+// add event listeners to login and signup buttons
+document
+    .querySelector('.login-form')
+    .addEventListener('submit', loginTemplate);
+
+document
+    .querySelector('.signup-form')
+    .addEventListener('submit', signupTemplate);
