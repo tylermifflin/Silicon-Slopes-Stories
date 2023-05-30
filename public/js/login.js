@@ -14,3 +14,11 @@ const loginTemplate = async (event) => {
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' },
         });
+        if (user.ok) {
+            // redirect to dashboard
+            document.location.replace('/dashboard');
+        } else {
+            alert('Failed to log in');
+        }
+    }
+};
