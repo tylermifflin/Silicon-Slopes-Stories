@@ -31,4 +31,20 @@ const signupTemplate = async (event) => {
     const name = document.querySelector('#name-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
-    
+
+    // if name, email, and password are entered
+    if (name && email && password) {
+        // send POST request to signup route
+        const user = await fetch('/api/users', {
+            method: 'POST',
+            body: JSON.stringify({ name, email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (user.ok) {
+            // redirect to dashboard
+            document.location.replace('/dashboard');
+        } else {
+            alert('Failed to sign up');
+        }
+    }
+};
