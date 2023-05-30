@@ -1,4 +1,4 @@
-// set up login and signup forms
+// set up login form
 const loginTemplate = async (event) => {
     event.preventDefault();
 
@@ -22,3 +22,13 @@ const loginTemplate = async (event) => {
         }
     }
 };
+
+// set up signup form
+const signupTemplate = async (event) => {
+    event.preventDefault();
+
+    // get values from signup form
+    const name = document.querySelector('#name-signup').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+    
