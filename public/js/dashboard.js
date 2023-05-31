@@ -53,6 +53,14 @@ const updateBlogPostHandler = async (event) => {
     }
 };
 
+// setting up an event listener to delete a blog post
+const deleteBlogPostHandler = async (event) => {
+    event.preventDefault();
+
+    // getting the id from the URL
+    const id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
 
 
 
