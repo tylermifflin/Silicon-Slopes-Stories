@@ -80,11 +80,11 @@ document
     .addEventListener('submit', newBlogPostHandler);
 
 document
-    .querySelector('.update-blogpost-form')
+    .querySelector('#update-blogpost')
     .addEventListener('submit', updateBlogPostHandler);
 
 document
-    .querySelector('.delete-blogpost-btn')
+    .querySelector('#delete-blogpost')
     .addEventListener('click', deleteBlogPostHandler);
     
 

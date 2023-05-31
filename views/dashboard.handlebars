@@ -8,8 +8,9 @@
 <div class="row">
     <div class="col">
         <h2>Create a new Blog Post</h2>
+    </div>
 <!-- Use newBlogPostHandler from dashboard.js -->
-<form class="newBlogPostForm" action="/api/blogposts" method="POST">
+  <form class="newBlogPostForm" action="/api/blogposts" method="POST">
     <div class="form-group">
         <label for="blog-title">Title</label>
         <input class="form-control" id="blog-title" name="blog-title" type="text" placeholder="Title">
@@ -18,13 +19,42 @@
         <label for="blog-content">Content</label>
         <textarea class="form-control" id="blog-content" name="blog-content" rows="3" placeholder="Content"></textarea>
     </div>
+    <div class="form-group">
     <button type="submit" class="btn btn-primary" id="create-new">Create New</button>
-
-
-        
-
-
     </div>
+  </form>
 </div>
+
+{{#if blogposts}}
+<!-- show all of the user's blog posts with option to update or delete -->
+<div class="row">
+    <div class="col">
+        <h2>Your Blog Posts</h2>
+    </div>
+    <div class="col">
+        <h2>Comments</h2>
+    </div>
+{{#each blogposts}}
+<div class="row">
+    <div class="col">
+        <h3>{{title}}</h3>
+        <p>{{content}}</p>
+    </div>
+    <div class="col">
+        <h3>Comments</h3>
+        {{#each comments}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary" id="update-blogpost" data-id="{{_id}}">Update</button>
+        <button type="button" class="btn btn-danger" id="delete-blogpost" data-id="{{_id}}">Delete</button>
+    </div>
+{{/each}}
+</div>
+{{/if}}
+</div>
+
+<script src="/js/dashboard.js"></script>
 
 
