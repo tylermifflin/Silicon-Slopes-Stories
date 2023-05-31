@@ -13,3 +13,12 @@ const newBlogPostHandler = async (event) => {
             body: JSON.stringify({ title, content }),
             headers: { 'Content-Type': 'application/json' },
         });
+
+        // if the request is successful, reload the page
+        if (newBlogPost.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert('Unsuccessful blog post');
+        }
+    }
+};
