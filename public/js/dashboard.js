@@ -62,5 +62,18 @@ const deleteBlogPostHandler = async (event) => {
         window.location.toString().split('/').length - 1
     ];
 
+    // send a DELETE request to the API endpoint
+    const deleteBlogPost = await fetch(`/api/blogposts/${id}`, {
+        method: 'DELETE',
+    });
+
+    // if the request is successful, reload the dashboard, otherwise alert the user
+    if (deleteBlogPost.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('Unsuccessful deletion');
+    }
+};
+
 
 
