@@ -44,5 +44,15 @@ const updateBlogPostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
+        // if the request is successful, reload the dashboard, otherwise alert the user
+        if (updateBlogPost.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert('Unsuccessful update');
+        }
+    }
+};
+
+
 
 
