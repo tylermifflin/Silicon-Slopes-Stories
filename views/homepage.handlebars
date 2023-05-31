@@ -1,0 +1,9 @@
+<!-- show all blogpost -->
+{{#each blogposts}}
+    <div class="blogpost">
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+        <p>Create by {{blogposts.user.name}}</p>
+        <p>Created on {{format_date blogposts.date_created}}</p>
+    </div>
+{{/each}}
