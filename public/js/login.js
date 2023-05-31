@@ -51,9 +51,9 @@ const signupTemplate = async (event) => {
 
 // add event listeners to login and signup buttons
 document
-    .querySelector('.login-form')
+    .querySelector('#login')
     .addEventListener('submit', loginTemplate);
 
 document
-    .querySelector('.signup-form')
+    .querySelector('#signup')
     .addEventListener('submit', signupTemplate);
