@@ -76,7 +76,7 @@ const deleteBlogPostHandler = async (event) => {
 };
 
 document
-    .querySelector('.new-blogpost-form')
+    .querySelector('#create-new')
     .addEventListener('submit', newBlogPostHandler);
 
 document
