@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET one blog post for dashboard and render blogPost page
-router.get('/blogPost/:id', async (req, res) => {
+router.get('/blogpost/:id', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findByPk(req.params.id, {
             include: [
@@ -36,7 +36,7 @@ router.get('/blogPost/:id', async (req, res) => {
             ],
         });
         const blogPost = blogPostData.get({ plain: true });
-        res.render('blogPost', {
+        res.render('blogpost', {
             ...blogPost,
             logged_in: req.session.logged_in,
         });
@@ -69,7 +69,7 @@ router.get('/login', (req, res) => {
         res.redirect('/dashboard');
         return;
     }
-    res.render('login');
+    res.render('dashboard');
 });
 
 module.exports = router;
