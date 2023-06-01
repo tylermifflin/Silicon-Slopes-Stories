@@ -1,9 +1,11 @@
 <!-- show all blogpost -->
-{{#each blogposts}}
-    <div class="blogpost">
-        <h2>{{title}}</h2>
-        <p>{{content}}</p>
-        <p>Create by {{blogposts.user.name}}</p>
-        <p>Created on {{format_date blogposts.date_created}}</p>
+{{#each blogposts as |blogpost|}}
+    <div class="row mb-4 blogpost">
+        <div class="col-12">
+            <h2><a href="/blogpost/{{blogpost.id}}">{{blogpost.title}}</a></h2>
+            <p>{{blogpost.content}}</p>
+            <p>Created by {{blogpost.user.name}}</p>
+            <p>Created on {{format_date blogpost.date_created}}</p>
+        </div>
     </div>
 {{/each}}
