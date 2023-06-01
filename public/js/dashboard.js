@@ -71,15 +71,15 @@ const deleteBlogPostHandler = async (event) => {
 };
 
 document
-    .querySelector('#create-new')
+    .querySelector('.new-blogpost-form')
     .addEventListener('submit', newBlogPostHandler);
 
 document
-    .querySelector('#update-blogpost')
+    .querySelector('.update-blogpost')
     .addEventListener('submit', updateBlogPostHandler);
 
 document
-    .querySelector('#delete-blogpost')
+    .querySelector('.delete-blogpost')
     .addEventListener('click', deleteBlogPostHandler);
     
 
