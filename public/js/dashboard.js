@@ -55,17 +55,11 @@ const updateBlogPostHandler = async (event) => {
 
 // setting up an event listener to delete a blog post
 const deleteBlogPostHandler = async (event) => {
-    event.preventDefault();
-
-    // getting the id from the URL
-    const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
-
-    // send a DELETE request to the API endpoint
-    const deleteBlogPost = await fetch(`/api/blogposts/${id}`, {
-        method: 'DELETE',
-    });
+    if (event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
+        const deleteBlogPost = await fetch(`/api/blogposts/${id}`, {
+            method: 'DELETE',
+        });
 
     // if the request is successful, reload the dashboard, otherwise alert the user
     if (deleteBlogPost.ok) {
@@ -73,6 +67,7 @@ const deleteBlogPostHandler = async (event) => {
     } else {
         alert('Unsuccessful deletion');
     }
+}
 };
 
 document
