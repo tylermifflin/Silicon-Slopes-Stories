@@ -69,7 +69,7 @@ router.get('/login', (req, res) => {
         res.redirect('/dashboard');
         return;
     }
-    res.render('dashboard');
+    res.render('login');
 });
 
 module.exports = router;
