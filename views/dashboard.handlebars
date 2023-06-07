@@ -1,3 +1,10 @@
+<!-- show the user's name -->
+<div class="row">
+    <div class="col">
+        <h1>Hi, {{name}}!</h1>
+    </div>
+</div>
+
 {{#if blogposts.length}}
 <!-- show all of the user's blog posts with option to update or delete -->
 {{#each blogposts as |blogpost|}}
@@ -21,14 +28,6 @@
 {{/if}}
 </div>
 
-
-<!-- show the user's name -->
-<div class="row">
-    <div class="col">
-        <h1>Dashboard</h1>
-        <h1>Hi, {{user.name}}!</h1>
-    </div>
-</div>
 <!-- create a new Blog Post -->
 <div class="row">
     <div class="col">
