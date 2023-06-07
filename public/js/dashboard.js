@@ -52,11 +52,8 @@ const updateBlogPostHandler = async (event) => {
 
 // setting up an event listener to delete a blog post
 const deleteBlogPostHandler = async (event) => {
-    event.preventDefault();
-
-    const deleteButton = event.target;
-    if (deleteButton.hasAttribute('data-id')) {
-        const id = deleteButton.getAttribute('data-id');
+    if (event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
         const deleteBlogPost = await fetch(`/api/blogposts/${id}`, {
             method: 'DELETE',
         });
@@ -70,19 +67,23 @@ const deleteBlogPostHandler = async (event) => {
     }
 };
 
+const deleteButtons = document.querySelectorAll('.delete-blogpost');
+deleteButtons.forEach((button) => {
+    button.addEventListener('click', deleteBlogPostHandler);
+});
+
 document
     .querySelector('.new-blogpost-form')
     .addEventListener('submit', newBlogPostHandler);
 
-const updateButtons = document.querySelectorAll('.update-blogpost');
-updateButtons.forEach((button) => {
-    .querySelector('.update-blogpost')
-    .addEventListener('click', updateBlogPostHandler);
-});
+document
+     .querySelector('.update-blogpost')
+     .addEventListener('click', updateBlogPostHandler);
 
-const deleteButtons = document.querySelectorAll('.delete-blogpost');
-deleteButtons.forEach((button) => {
-    .querySelector('.delete-blogpost')
-    .addEventListener('click', deleteBlogPostHandler);
-});
+
+document
+     .querySelector('.delete-blogpost')
+     .addEventListener('click', deleteBlogPostHandler);
+
+
     
