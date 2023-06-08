@@ -26,10 +26,8 @@ const newBlogPostHandler = async (event) => {
 
 // setting up an event listener to update a blog post
 const updateBlogPostHandler = async (event) => {
-    event.preventDefault();
-    const updateButton = event.target;
-    if (updateButton.hasAttribute('data-id')) {
-        const id = updateButton.getAttribute('data-id');
+    if (event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
         const title = document.querySelector('#blog-title').value.trim();
         const content = document.querySelector('#blog-content').value.trim();
 
@@ -49,6 +47,10 @@ const updateBlogPostHandler = async (event) => {
     }
 };
 
+const updateButtons = document.querySelectorAll('.update-blogpost');
+updateButtons.forEach((button) => {
+    button.addEventListener('submit', updateBlogPostHandler);
+});
 
 // setting up an event listener to delete a blog post
 const deleteBlogPostHandler = async (event) => {
@@ -76,14 +78,7 @@ document
     .querySelector('.new-blogpost-form')
     .addEventListener('submit', newBlogPostHandler);
 
-document
-     .querySelector('.update-blogpost')
-     .addEventListener('click', updateBlogPostHandler);
 
-
-document
-     .querySelector('.delete-blogpost')
-     .addEventListener('click', deleteBlogPostHandler);
 
 
     
