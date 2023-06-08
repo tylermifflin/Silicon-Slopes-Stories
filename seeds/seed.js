@@ -1,24 +1,27 @@
 // setting up seed data to import into the database from blogpostData.js and userData.js
 const sequelize = require('../config/connection');
 const { BlogPost, User } = require('../models');
-const seedBlogpost = require('./blogpostData');
-const seedUser = require('./userData');
 
-const seedAll = async () => {
+const blogpostData = require('./blogpostData.json');
+const userData = require('./userData.json');
+
+const seedDatabase = async () => {
     await sequelize.sync({ force: true });
-    console.log('--------------');
-    await User.bulkCreate(seedUser, {
+    
+    const users = await User.bulkCreate(userData, {
         individualHooks: true,
         returning: true,
+    });
+    
+    for (const blogpost of blogpostData) {
+        await BlogPost.create({
+        ...blogpost,
+        user_id: users[Math.floor(Math.random() * users.length)].id,
         });
-    console.log('--------------');
-    await BlogPost.bulkCreate(seedBlogpost, {
-        individualHooks: true,
-        returning: true,
-        });
-
-    console.log('--------------');
+    }
+    
     process.exit(0);
-};
+    };
 
-seedAll();
+seedDatabase();
+

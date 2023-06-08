@@ -1,0 +1,9 @@
+// seed database with userData
+
+ [
+    {
+        "name": "Rick James",
+        "email": "rjames@test.com",
+        "password": "rickjames1"
+    }
+]
