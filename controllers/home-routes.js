@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, BlogPost } = require('../models');
+const { User, BlogPost, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all blog posts for dashboard
@@ -52,6 +52,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
             include: [{ model: BlogPost }],
+            include: [{ model: Comment }],
         });
         const user = userData.get({ plain: true });
         res.render('dashboard', {
