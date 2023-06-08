@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findAll({
-            attributes: [ 'id', 'title', 'content', 'created_at' ],
+            attributes: ['id','title', 'content','created_at' ],
             include: [
                 {
                     model: Comment,
@@ -82,10 +82,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
-// if user already logged in, redirect to dashboard
+// if user already logged in, redirect to homepage
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-        res.redirect('/dashboard');
+        res.redirect('/homepage');
         return;
     }
     res.render('login');
