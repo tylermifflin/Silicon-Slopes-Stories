@@ -6,7 +6,16 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findAll({
+            attributes: [ 'id', 'title', 'content', 'created_at' ],
             include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'blogpost_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['name'],
+                }
+            },
                 {
                     model: User,
                     attributes: ['name'],
@@ -28,7 +37,12 @@ router.get('/', async (req, res) => {
 router.get('/blogpost/:id', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findByPk(req.params.id, {
+            attributes: [ 'id', 'title', 'content', 'created_at' ],
             include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'blogpost_id', 'user_id', 'created_at'],
+                }
                 {
                     model: User,
                     attributes: ['name'],
