@@ -16,3 +16,25 @@ router.post ('/', withAuth, async (req, res) => {
     }
 }
 );
+
+// DELETE /api/comments/1 -- only user who posted the comment can delete it
+router.delete('/:id', withAuth, async (req, res) => {
+    try {
+        const commentData = await Comment.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
+        if (!commentData) {
+            res.status(404).json({ message: 'Comment does not exist with this id' });
+            return;
+        }
+        res.status(200).json(commentData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+);
+
+module.exports = router;
