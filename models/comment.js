@@ -22,4 +22,21 @@ Comment.init(
                 key: 'id'
             }
         },
-        
+        blogpost_id : {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'blogpost',
+                key: 'id'
+            }
+        },
+    },
+    {
+        sequelize,
+        timestamps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'comment',
+    }
+);
+
+module.exports = Comment;
